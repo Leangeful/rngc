@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/BodyPart.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Polygon2D.gd" type="Script" id=2]
+
+[node name="BodyPart" type="RigidBody2D" groups=[
+"pickable",
+]]
+input_pickable = true
+can_sleep = false
+script = ExtResource( 1 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+antialiased = true
+polygon = PoolVector2Array( 3.06152e-15, -50, 47.5528, -15.4508, 29.3893, 40.4509, -29.3893, 40.4509, -47.5528, -15.4508 )
+script = ExtResource( 2 )
+vertex_count = 5
+base_polygon = PoolVector2Array( 3.06152e-15, -50, 47.5528, -15.4508, 29.3893, 40.4509, -29.3893, 40.4509, -47.5528, -15.4508 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 0, 200, 0, 200, 200, 0, 200 )
+
+[connection signal="input_event" from="." to="." method="_on_BodyPart_input_event"]
