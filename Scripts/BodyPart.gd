@@ -7,10 +7,18 @@ onready var part_collision = get_node("CollisionPolygon2D")
 var is_dragged = false
 signal clicked
 
+var torque_factor = -100000
+
 func _physics_process(_delta):
+	#apply_central_impulse(Vector2(sign(global_rotation_degrees) * 1, -1))
+	
 	if is_dragged:
 		global_transform.origin = get_global_mouse_position()
 		global_rotation = 0.0
+	else:
+		#apply_torque_impulse(global_rotation_degrees)
+		applied_torque = global_rotation_degrees * torque_factor
+		#print(global_rotation_degrees)
 
 func pickup():
 	if is_dragged:
